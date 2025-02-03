@@ -1,0 +1,35 @@
+### Rejestracja nowej kolejki górskiej
+POST http://localhost:8080/api/coasters
+Content-Type: application/json
+
+{
+  "liczba_personelu": 16,
+  "liczba_klientow": 60000,
+  "dl_trasy": 1800,
+  "godziny_od": "08:00",
+  "godziny_do": "16:00",
+  "foo" : "asd"
+}
+
+### Rejestracja nowego wagonu
+POST http://localhost:8080/api/coasters/1/wagons
+Content-Type: application/json
+
+{
+  "ilosc_miejsc": 100,
+  "predkosc_wagonu": 1.2
+}
+
+### Usunięcie wagonu
+DELETE http://localhost:8080/api/coasters/1/wagons/1
+
+### Aktualizacja danych kolejki górskiej
+PUT http://localhost:8080/api/coasters/1
+Content-Type: application/json
+
+{
+  "liczba_personelu": 20,
+  "liczba_klientow": 70000,
+  "godziny_od": "09:00",
+  "godziny_do": "17:00"
+}
