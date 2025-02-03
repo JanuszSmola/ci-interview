@@ -1,8 +1,5 @@
 FROM php:8.4-fpm
 
-ENV APP_ENV=development
-ENV LOG_LEVEL=debug
-
 RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libpng-dev \
@@ -15,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd mbstring zip pdo pdo_mysql intl
-
 
 RUN pecl install redis && docker-php-ext-enable redis
 

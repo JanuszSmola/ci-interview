@@ -7,9 +7,6 @@ services:
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
-    environment:
-      - APP_ENV=development
-      - LOG_LEVEL=debug
     ports:
       - "9000:9000"
     depends_on:
