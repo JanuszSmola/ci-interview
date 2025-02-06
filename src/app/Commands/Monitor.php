@@ -7,7 +7,10 @@ use App\Services\CoasterStatusGenerator;
 use CodeIgniter\CLI\BaseCommand;
 use CodeIgniter\CLI\CLI;
 use Clue\React\Redis\Factory as RedisFactory;
+use CodeIgniter\CLI\Commands;
+use Psr\Log\LoggerInterface;
 use React\EventLoop\Loop;
+use React\EventLoop\LoopInterface;
 
 class Monitor extends BaseCommand
 {
@@ -20,11 +23,11 @@ class Monitor extends BaseCommand
     private RedisFactory $redisFactory;
 
     public function __construct(
-        CoasterStatusGenerator $statusGenerator,
-        LoopInterface $loop = null
+        LoggerInterface $logger,
+        Commands $commands,
     ) {
-        parent::__construct();
-        $this->statusGenerator = $statusGenerator;
+        parent::__construct($logger, $commands);
+        $this->statusGenerator = new CoasterStatusGenerator();
         $this->loop = $loop ?? Loop::get();
         $this->redisFactory = new RedisFactory($this->loop);
     }
